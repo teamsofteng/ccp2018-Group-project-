@@ -17,11 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.conf.urls import url, include
 from firstPro.views import homepage
-
+from django.urls import path
 urlpatterns = [
     url('admin/', admin.site.urls),
     url(r'scheduleGen/', include('scheduleGen.urls')),
     url(r'^$', include('scheduleGen.urls')),
-    #url(r'^classReview/', include('classReview.urls')),
+    url(r'classReview/', include('classReview.urls')),
     #url(r'^$', include('classReview.urls')),
 ]
