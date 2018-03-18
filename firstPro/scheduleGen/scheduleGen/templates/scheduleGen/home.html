@@ -1,0 +1,36 @@
+{% extends "scheduleGen/header.html" %}
+
+{% block content %}
+<table style="width:70%;">
+	<tbody width="100%">
+		<tr>
+			<td class="TopBox" colspan=2 style="background-color: #DCDCDC;text-align:center;">
+				<div style="background-color:#B0C4DE;border-radius:25px;border-color:#E6E6FA">
+					<h1>Class Schedule Generation Page</h1>
+					<p>Sample words</p>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="BoxLeftTD" style="background-color: #DCDCDC;text-align: center;list-style: none;">
+				<div class="BoxLeft">
+					<h2>Information About Your Major</h2>
+					<form name="scheduleForm" method='POST'> {% csrf_token %}
+						{{ scheduleForm.as_ul }}
+							<input type="submit" name="enterData" value="Submit Info" style="background-color:#32CD32;border-radius:25px;border-color:lime;">
+						<!--</table>-->
+					</form>
+				</div>
+			</td>
+			<td class="BoxRightTD" style="background-color: #DCDCDC">
+				<div class="BoxRight">
+					<textarea rows="50" cols="75" style="resize: vertical;" spellcheck="false">{{ result }}</textarea>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" style="background-color: #DCDCDC;text-align:center;"><p>Footer Stuff</p></td>
+		</tr>
+	</tbody>
+</table>
+{% endblock %}
