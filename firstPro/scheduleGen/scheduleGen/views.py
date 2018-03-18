@@ -45,3 +45,6 @@ class Index(TemplateView):
 
 			args = {'scheduleForm':scheduleForm, 'result':result}
 			return render(request, self.template_name, args)
+# Comments
+# - Need to impliment the algorithm that I have written
+# - Need to make contributions to GitHub
