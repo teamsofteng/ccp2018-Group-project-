@@ -7,21 +7,16 @@ from django.urls import reverse
 
 class home(TemplateView):
     template_name =  'classReview/index.html'
-    def classReviewView(request):
-        if request.method == 'POST':
-            form = classReviewForm(request.POST)
-            if form.is_valid():
-                courseID = request.POST.get('courseID','')
-                overallNode = request.POST.get('overallNode','')                
-                connCourseID = request.POST.get('connCourseID','')
-                difficultyNode = request.POST.get('difficultyNode','')
-                cohesionNode = request.POST.get('cohesionNode','')
-                class_obj = CourseLinks(courseID = courseID, overallNode = overallNode ,connCourseID = connCourseID, difficultyNode = difficultyNode, cohesionNode = cohesionNode)
-                class_obj.save()
-                return redirect('classReview:classReview')
+    def get(self,request):
+        form = classReviewForm()
+        return render(request,self.template_name, {'form': form})
+    def post(self, request):
+        form = classReviewForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
 				
-        else:
-            form = classReviewForm()
+        
         return render(request, self.template_name, {'form': form,})
 			
 
