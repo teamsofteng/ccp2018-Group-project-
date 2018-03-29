@@ -3,6 +3,7 @@ from django.db import models
 class Courses(models.Model):
 	courseID = models.CharField(max_length=10, primary_key=True) 		#ex CSCI300
 	courseName = models.CharField(max_length=75)						#ex Introduction to Java
+	creditHours = models.IntegerField()
 
 class CourseLinks(models.Model):
 	class Meta:
