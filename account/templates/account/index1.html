@@ -1,6 +1,6 @@
 <html>
 <head>
-        <title>Login</title>
+        <title>Logout</title>
         <style type="text/css">
                 body{
                         background-color: #F2A7A7;
@@ -16,16 +16,15 @@
                         color: darkred;
 
                      }
-                            
+
 
         </style>
 </head>
 <body>
-        <h1>Login</h1>
-        <form method="post" > {% csrf_token %}
-                {{form.as_p}}
-                <button type="submit">Login</button>
-	</form>
+        <h1>Logged out</h1>
+        <p> 
+	    You have logged out!
+	</p>
 </body>
 </html>
 

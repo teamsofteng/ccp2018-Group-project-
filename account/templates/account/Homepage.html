@@ -1,0 +1,41 @@
+<DOCCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>{% block title %}Template{% endblock %}</title>
+{% include "includes/style.html" %}
+
+</head>
+<body>
+
+<div id="wrapper">
+
+  <div id="header">
+
+    <div class="top_banner">
+      <h1>IS&amp;T Schedule Helper</h1>
+    </div>
+
+  </div>
+
+  <div id="page_content">
+
+    <div class="navigation">
+      <ul>
+        <li><a href="http://ec2-35-173-183-216.compute-1.amazonaws.com/">Home</a></li>
+        <li><a href="http://ec2-35-173-183-216.compute-1.amazonaws.com/register">Register</a></li>
+        <li><a href="http://ec2-35-173-183-216.compute-1.amazonaws.com/account/login">Login</a></li>
+        <li><a href="http://ec2-35-173-183-216.compute-1.amazonaws.com/account/logout">Logout</a></li>
+        <li><a href="http://ec2-35-173-183-216.compute-1.amazonaws.com/classReview">Course Review</a></li>
+        <li><a href="http://ec2-35-173-183-216.compute-1.amazonaws.com:8080/Classes">Classes</a></li>
+        <li><a href="http://ec2-35-173-183-216.compute-1.amazonaws.com:8080/Majors">Majors</a></li>
+        <li><a href="http://ec2-35-173-183-216.compute-1.amazonaws.com/scheduleGen">Generate Course Schedule</a></li>
+      </ul>
+    </div>
+    <div class="common_content">
+            {% block content %}{% endblock %}
+    </div>
+</div>
+</body>
+</html>
+
