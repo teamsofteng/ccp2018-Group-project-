@@ -1,0 +1,51 @@
+<html>
+<head>
+        <title>Course Review Form</title>
+        <style type="text/css">
+                body{
+                        background-color: #F2A7A7;
+                    }
+                h1 {
+                        text-align: center;
+                        font-size: 50px;
+                        color: darkred;
+                   }
+                form {
+                        margin: 20px auto;
+                        width: 320px;
+                        color: darkred;
+
+                     }
+                input {
+                        padding: 10px;
+                        font-size: inherit;
+
+                      }
+                input[type="text"] {
+                        display: block;
+                        margin-bottom: 25px;
+                        width: 100%;
+                        border: 2px solid darkred;
+                                   }
+                input[type="submit"] {
+                        width: 344px;
+                        height: 45px;
+                        border: none;
+                        background: darkred;
+                        color: white;
+                                     }
+
+        </style>
+</head>
+<body>
+        <h1>Login</h1>
+        <form method="post" > {% csrf_token %}
+                Username:<input type="text" name="username">
+                Password:<input type="text" name="password">
+                <div>
+                        <input type="submit" name="Login">
+                </div>
+
+</body>
+</html>
+
