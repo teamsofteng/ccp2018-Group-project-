@@ -27,4 +27,6 @@ urlpatterns = [
     url(r'classReview/', include('classReview.urls')),
     url(r'', include('Home.urls')),
     #url(r'^$', include('classReview.urls')),
+    url(r'account/', include('account.urls')),
+    url(r'class/', include('class.urls')),
 ]
