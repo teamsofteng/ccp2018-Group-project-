@@ -39,16 +39,15 @@
 </head>
 <body>
 	<h1>Course Review Form</h1>
-	<form>
-		Course ID <input type="text" name="Course ID">
-		Course Difficulty (1-100) <input type="text" name="Course Difficulty (1-100)">
-		Overall Course Rating (1-100) <input type="text" name="Overall Course Rating (1-100)">
-		<label>This course is compatabile with ..</label>
-		<select id = "myConnCourse">
-			<option value = "english">CIST 3000</option>
-		</select>
+	<form method="post" > {% csrf_token %}
+		Course ID <input type="text" name="courseID">
+		Overall Course Rating (1-100) <input type="text" name="overallNode">
+		Course is compatabile with <input type="text" name="connCourseID">
+		Difficulty if courses taken together (1-100) <input type="text" name="difficultyNode">
+	        Course compatability (1-100) <input type="text" name="cohesionNode">
 		<div>
 			<input type="submit" name="Submit">
 		</div>
+	
 </body>
 </html>
