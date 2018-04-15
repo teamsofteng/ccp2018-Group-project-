@@ -1,0 +1,21 @@
+<body>
+
+<div class="container">
+    <p></p>
+    <form method=POST action="">
+        {{ mjs }}
+    </form>
+
+
+
+    <h1>All majors</h1>
+    <table>
+
+        {% for item in query_results %}
+        <tr>
+            <td>{{ item.majorName }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+</body>
