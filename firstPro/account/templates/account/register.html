@@ -1,0 +1,33 @@
+<html>
+<head>
+        <title>Register</title>
+        <style type="text/css">
+                body{
+                        background-color: #F2A7A7;
+                    }
+                h1 {
+                        text-align: center;
+                        font-size: 50px;
+                        color: darkred;
+                   }
+                form {
+                        margin: 20px auto;
+                        width: 320px;
+                        color: darkred;
+
+                     }
+
+
+        </style>
+</head>
+<body>
+        <h1>Register</h1>
+	<div class="container">
+        	<form method="post" > {% csrf_token %}
+                	{{form.as_p}}
+                	<button type="submit">Register</button>
+        	</form>
+	</div>
+</body>
+</html>
+
