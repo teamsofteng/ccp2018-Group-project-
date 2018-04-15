@@ -1,21 +1,9 @@
-<body>
-
-<div class="container">
-    <p></p>
-    <form method=POST action="">
-        {{ mjs }}
-    </form>
-
-
-
-    <h1>All majors</h1>
-    <table>
-
-        {% for item in query_results %}
-        <tr>
-            <td>{{ item.majorName }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+< div class="container">
+     <h1>View Course Reviews</h1>
+     <h2>{{ text}}</h2>
+     {% for post in posts %}
+         <h1>{{post.majorName}} </h1>
+     {%endfor %}
 </div>
-</body>
+ 
+        

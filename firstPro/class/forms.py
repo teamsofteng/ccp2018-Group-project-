@@ -10,7 +10,7 @@ from scheduleGen.models import Majors
 #    class Meta:
 #        model =  Majors
 #        fields = ('majorCode', 'majorName', 'majorCourses', 'sideCourses', 'electives',)
-class MajorChoice(forms.Form):
-    mj = forms.ModelChoiceField(
-	queryset = Majors.objects.values_list("majorName", flat=True).distinct(),empty_label = None)
+#class MajorChoice(forms.Form):
+#    mj = forms.ModelChoiceField(
+#	queryset = Majors.objects.all())
 

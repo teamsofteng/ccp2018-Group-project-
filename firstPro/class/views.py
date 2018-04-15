@@ -4,17 +4,15 @@ from classReview.forms import classReviewForm
 #from classReview.models import CourseLinks
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
-
+from scheduleGen.models import Majors
 class index(TemplateView):
     template_name = 'class/index.html'
-    def index1(request):
-        query_results = Majors.objects.all()
-        mjs = MajorChoice()
-        context = {
-            'query_results': query_results,
-	    'mjs': mjs,
-        }
-        return render(request,'class/index.html',context)
+    def get(self,request):
+        posts = Majors.objects.all()
+        args = {'posts':posts}
+        return render(request, self.template_name, args)
+     
+    
 
 #class home(TemplateView):
 #    template_name =  'class/index.html'
