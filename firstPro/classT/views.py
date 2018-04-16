@@ -5,12 +5,15 @@ from classReview.forms import classReviewForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from scheduleGen.models import Majors
+from scheduleGen.models import CourseLinks
 class index(TemplateView):
-    template_name = 'classR/index.html'
+    template_name = 'classT/index.html'
     def get(self,request):
         posts = Majors.objects.filter(majorName="Cyber Security")
-        args = {'posts':posts}
+        post1 = CourseLinks.objects.raw('SELECT DISTINCT courseID, 1 id,connCourseID, difficultyNode, cohesionNode, overallNode FROM scheduleGen_courselinks WHERE scheduleGen_courselinks.courseID IN (SELECT DISTINCT(courseID) FROM scheduleGen_courselinks, scheduleGen_majors WHERE majorName = "Cyber Security" AND instr(majorCourses, courseID)>0);')
+        args = {'posts':posts,'post1':post1}
         return render(request, self.template_name, args)
+
 
 
 # Create your views here.
