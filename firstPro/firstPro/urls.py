@@ -29,4 +29,7 @@ urlpatterns = [
     #url(r'^$', include('classReview.urls')),
     url(r'account/', include('account.urls')),
     url(r'class/', include('class.urls')),
+    url(r'classR/', include('classR.urls')),
+    url(r'classT/', include('classT.urls')),
+    url(r'majors/', include('majors.urls')),
 ]
