@@ -1,0 +1,63 @@
+<head>
+        <title>Course Review Classes</title>
+        <style type="text/css">
+                body{
+                        background-color: #F2A7A7;
+                    }
+                h1 {
+                        text-align: center;
+                        font-size: 50px;
+                        color: darkred;
+                   }
+                h2 {
+                        text-align: left;
+                        font-size: 30px;
+                        color: darkred;
+                   }
+                h3 {
+                        text-align: left;
+                        font-size: 20px;
+                        color: darkred;
+                   }
+
+
+                form {
+                        margin: 20px auto;
+                        width: 320px;
+                        color: darkred;
+
+                     }
+                input {
+                        padding: 10px;
+                        font-size: inherit;
+
+                      }
+                input[type="text"] {
+                        display: block;
+                        margin-bottom: 25px;
+                        width: 100%;
+                        border: 2px solid darkred;
+                                   }
+                input[type="submit"] {
+                        width: 344px;
+                        height: 45px;
+                        border: none;
+                        background: darkred;
+                        color: white;
+                                     }
+
+      </style>
+
+<h1>Course Reviews of Classes associated with Biomedical Informatics & Bioinformatics:</h1>
+{% for post in posts %}
+
+{%endfor %}
+{% for post in post1 %}
+    <h2>Class: {{post.courseID}}</h2>
+    <h3>Overall Course Rating (1-100): {{post.overallNode}}</h3>
+    <h3>This course compatabile with: {{post.connCourseID}}</h3>
+    <h3>Difficulty if courses taken together: {{post.difficultyNode}}</h3>
+    <h3>Course compatability: {{post.cohesionNode}}</h3>
+{%endfor %}
+
+
