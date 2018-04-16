@@ -1,9 +1,21 @@
-< div class="container">
-     <h1>View Course Reviews</h1>
-     <h2>{{ text}}</h2>
-     {% for post in posts %}
-         <h1>{{post.majorName}} </h1>
-     {%endfor %}
-</div>
+<h1>View Course Reviews</h1>
+<h2>Select a Major:</h2>
+{% for post in posts %}
+    <h3><a href="http://ec2-35-173-183-216.compute-1.amazonaws.com/classR">{{post.majorName}}</a></h3>
+{%endfor %}
+{% for post in post1 %}
+    <h3><a href="http://ec2-35-173-183-216.compute-1.amazonaws.com/classT">{{post.majorName}}</a></h3>
+{%endfor %}
+
+{% for post in post2 %}
+    <h3><a href="http://ec2-35-173-183-216.compute-1.amazonaws.com/classT">{{post.majorName}}</a></h3>
+{%endfor %}
  
+{% for post in post3 %}
+    <h3><a href="http://ec2-35-173-183-216.compute-1.amazonaws.com/classT">{{post.majorName}}</a></h3>
+{%endfor %}
+
+{% for post in post4 %}
+    <h3><a href="http://ec2-35-173-183-216.compute-1.amazonaws.com/classT">{{post.majorName}}</a></h3>
+{%endfor %}
         
