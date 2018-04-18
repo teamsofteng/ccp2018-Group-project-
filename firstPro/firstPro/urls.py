@@ -31,5 +31,17 @@ urlpatterns = [
     url(r'class/', include('class.urls')),
     url(r'classR/', include('classR.urls')),
     url(r'classT/', include('classT.urls')),
+    url(r'classU/', include('classU.urls')),
+    url(r'classV/', include('classV.urls')),
+    url(r'classW/', include('classW.urls')),
     url(r'majors/', include('majors.urls')),
+    url(r'mission/', include('mission.urls')),
+    url(r'classes/', include('classes.urls')),
+    url(r'csci/', include('csci.urls')),
+    url(r'cyber/', include('cyber.urls')),
+    url(r'mis/', include('mis.urls')),
+    url(r'itinn/', include('itinn.urls')),
+    url(r'bioi/',include('bioi.urls')),
+
+
 ]

@@ -44,7 +44,17 @@ INSTALLED_APPS = [
     'class',
     'classR',
     'classT',
+    'classU',
+    'classV',
+    'classW',
     'majors',
+    'mission',
+    'classes',
+    'csci',
+    'cyber',
+    'mis',
+    'itinn',
+    'bioi',
 ]
 LOGIN_REDIRECT_URL = 'http://ec2-35-173-183-216.compute-1.amazonaws.com/'
 
