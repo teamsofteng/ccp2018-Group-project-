@@ -10,7 +10,7 @@ class index(TemplateView):
     template_name = 'classT/index.html'
     def get(self,request):
         posts = Majors.objects.filter(majorName="Cyber Security")
-        post1 = CourseLinks.objects.raw('SELECT DISTINCT courseID, 1 id,connCourseID, difficultyNode, cohesionNode, overallNode FROM scheduleGen_courselinks WHERE scheduleGen_courselinks.courseID IN (SELECT DISTINCT(courseID) FROM scheduleGen_courselinks, scheduleGen_majors WHERE majorName = "Cyber Security" AND instr(majorCourses, courseID)>0);')
+        post1 = CourseLinks.objects.raw('SELECT DISTINCT courseID, 1 id,connCourseID, difficultyNode, cohesionNode, overallNode FROM scheduleGen_courselinks WHERE scheduleGen_courselinks.courseID IN (SELECT DISTINCT(courseID) FROM scheduleGen_courselinks, scheduleGen_majors WHERE majorName = "Cyber Security" AND (instr(majorCourses, courseID)>0 OR instr(sideCourses, courseID) >0 OR instr(electives,courseID) > 0));')
         args = {'posts':posts,'post1':post1}
         return render(request, self.template_name, args)
 
