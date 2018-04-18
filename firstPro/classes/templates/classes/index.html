@@ -1,0 +1,75 @@
+{% extends "Basic.html" %}
+
+{% block content %}
+
+<head>
+        <title>Classes</title>
+        <style type="text/css">
+                body{
+                        background-color: #F2A7A7;
+                    }
+                h1 {
+                        text-align: center;
+                        font-size: 50px;
+                        color: darkred;
+                   }
+                h2 {
+                        text-align: center;
+                        font-size: 30px;
+                        color: red; 
+                   }
+                h3 {
+                        text-align: center;
+                        font-size: 20px;
+                        color: red;
+                   }
+
+
+                form {
+                        margin: 20px auto;
+                        width: 320px;
+                        color: darkred;
+
+                     }
+                input {
+                        padding: 10px;
+                        font-size: inherit;
+
+                      }
+                input[type="text"] {
+                        display: block;
+                        margin-bottom: 25px;
+                        width: 100%;
+                        border: 2px solid darkred;
+                                   }
+                input[type="submit"] {
+                        width: 344px;
+                        height: 45px;
+                        border: none;
+                        background: darkred;
+                        color: white;
+                                     }
+
+        </style>
+</head>
+<h1>View Classes</h1>
+<h2>Select a Major:</h2>
+{% for post in posts %}
+    <h3><a href="http://ec2-35-173-183-216.compute-1.amazonaws.com/csci">{{post.majorName}}</a></h3>
+{%endfor %}
+{% for post in post1 %}
+    <h3><a href="http://ec2-35-173-183-216.compute-1.amazonaws.com/cyber">{{post.majorName}}</a></h3>
+{%endfor %}
+
+{% for post in post2 %}
+    <h3><a href="http://ec2-35-173-183-216.compute-1.amazonaws.com/mis">{{post.majorName}}</a></h3>
+{%endfor %}
+ 
+{% for post in post3 %}
+    <h3><a href="http://ec2-35-173-183-216.compute-1.amazonaws.com/itinn">{{post.majorName}}</a></h3>
+{%endfor %}
+
+{% for post in post4 %}
+    <h3><a href="http://ec2-35-173-183-216.compute-1.amazonaws.com/bioi">{{post.majorName}}</a></h3>
+{%endfor %}
+{% endblock %}        
