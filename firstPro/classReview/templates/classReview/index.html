@@ -1,3 +1,5 @@
+{% extends "Basic.html" %}
+{% block content %}
 <html>
 <head>
 	<title>Course Review Form</title>
@@ -27,7 +29,7 @@
         		width: 100%;
         		border: 2px solid darkred;
                                    }
-		input[type="submit"] {
+		button[type="submit"] {
         		width: 344px;
         		height: 45px;
         		border: none;
@@ -39,15 +41,32 @@
 </head>
 <body>
 	<h1>Course Review Form</h1>
-	<form method="post" > {% csrf_token %}
-		Course ID <input type="text" name="courseID">
-		Overall Course Rating (1-100) <input type="text" name="overallNode">
-		Course is compatabile with <input type="text" name="connCourseID">
-		Difficulty if courses taken together (1-100) <input type="text" name="difficultyNode">
-	        Course compatability (1-100) <input type="text" name="cohesionNode">
-		<div>
-			<input type="submit" name="Submit">
-		</div>
-	
+	<form name="classReviewForm" method="POST" > {% csrf_token %}
+                <div class = "field" >
+                      <label for ="courseID">CourseID</label>
+                      {{ classReviewForm.courseID }}
+                </div>
+                
+		<div class = "field">
+		      <label for= "overallNode">Overall Course Rating (0-100)</label>
+                      {{ classReviewForm.overallNode }}
+                </div>
+                <div class = "field">
+                      <label for="connCourseID">Course is compatible with</label>
+                      {{ classReviewForm.connCourseID }}
+                </div>
+                <div class= "field">
+                      <label for="difficultyNode">Difficulty if courses taken together (0-100)</label> 
+                      {{ classReviewForm.difficultyNode }}
+                </div>
+                <div class="field">
+                      <label for="cohesionNode">Course compatibility (0-100)</label>                         {{ classReviewForm.cohesionNode }}
+                </div>
+                <button type="submit">Submit</button>
+        </form>
+        
+
 </body>
+
 </html>
+{% endblock %}
