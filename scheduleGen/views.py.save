@@ -30,17 +30,17 @@ class Index(TemplateView):
 	def addCourseToSchedule(self, semester, course):
 		global addedCourses
 		global schedule
+		print("Course: {}".format(course))
 		courseData = Courses.objects.get(courseID=course)
 		addedCourses.append(course)
 		schedule[semester].append([course, courseData.creditHours])
 
 	def getCourseLinkValue(self, semester, course):
 		retVal = 0
-		'''courseLinkData = CourseLinks.objects.get(courseID=semester, connCourseID=course)
-		retVal = ( courseLinkData.difficultyNode / 3 ) + ( courseLinkData.cohesionNode / 3 ) + ( courseLinkData.overallNode / 3 )'''
 		for mainCourse in semester:
+			print("Main: {}, Course: {}".format(mainCourse[0], course))
 			courseLinkData = CourseLinks.objects.get(courseID=mainCourse[0], connCourseID=course)
-			retVal += ( courseLinkData.difficultyNode / 3 ) + ( courseLinkData.cohesionNode / 3 ) + ( courseLinkData.overallNode / 3)
+			retVal += ( courseLinkData.difficultyNode / 3 ) + ( courseLinkData.cohesionNode / 3 ) + ( courseLinkData.overallNode / 3 )
 		return retVal
 
 	def post(self, request):
@@ -49,12 +49,11 @@ class Index(TemplateView):
 		global schedule
 		global addedCourses
 		global creditLimit
-		addedCourses = []
 		schedule = []
 
 		if form.is_valid():
-			print("ITERATION")
 			code = form.cleaned_data['searchValueMajor']
+			creditLimit = 15
 			callBack = Majors.objects.get(majorCode=code)
 			result = ''
 			mainCourses = callBack.majorCourses.split(',')
@@ -64,8 +63,9 @@ class Index(TemplateView):
 				schedule.append([])
 				self.addCourseToSchedule(ctr, course)
 				ctr += 1
+
 			# Check prerequisites for the major courses
-			ctr = 0
+			ctr =0
 			for semester in schedule:
 				prereqs = self.checkPrereqs(semester[0][0])
 				if prereqs != None:
@@ -79,6 +79,7 @@ class Index(TemplateView):
 			for course in sideCourses:
 				if course in addedCourses:
 					sideCourses.remove(course)
+
 			ctr = 0
 			for semester in schedule:
 				coursesAvailableForSemester = []
@@ -87,58 +88,33 @@ class Index(TemplateView):
 				for course in semester:
 					creditsTaken += course[1]
 				for course in sideCourses:
-					prereqs = (self.checkPrereqs(course))
-					if prereqs != None:
-						hold = True
-						for prereq in prereqs.split(','):
-							if prereq not in addedCourses:
-								hold = False
-						if hold:
-							coursesAvailableForSemester.append(course)
-							coursesAvailableForSemesterLinks.append(self.getCourseLinkValue(semester, course))
+					prereqs = self.checkPrereqs(course)
+					if prereqs != None and prereqs in addedCourses:
+						coursesAvailableForSemester.append(course)
+						coursesAvailableForSemesterLinks.append(self.getCourseLinkValue(semester, course))
 					else:
 						coursesAvailableForSemester.append(course)
 						coursesAvailableForSemesterLinks.append(self.getCourseLinkValue(semester, course))
+				print("Annnnnnnd Nowwwwwwwww For the Maiiiiiiiiiin Evennnnttttttt")
 				while creditsTaken < creditLimit:
-					#print("Schedule: {}".format(schedule))
-					#print("SideCourses: {} || CreditsTaken: {}".format(len(sideCourses),creditsTaken))
-					minimumValue = -1
+					minimumValue = 1000000
 					courseToTake = 'CYBR 1100'
 					ctrRemove = 0
 					for course, value in zip(coursesAvailableForSemester, coursesAvailableForSemesterLinks):
-						if value > minimumValue:
+						if value < minimumValue:
 							minimumValue = value
 							courseToTake = course
 						ctrRemove += 1
-					#print("Course To Remove: {}\nCourseAvailableList: {}".format(course, coursesAvailableForSemester))
-					self.addCourseToSchedule(ctr, courseToTake)
-					sideCourses.remove(courseToTake)
-					coursesAvailableForSemester.remove(courseToTake)
-					del coursesAvailableForSemesterLinks[ctrRemove-1]
+					self.addCourseToSchedule(ctr, course)
 					if len(sideCourses) == 0:
-						# Assemble the schedule into a readable output string and assign to result
-						ctr = 1
-						result = ""
-						for semester in schedule:
-							creditCount = 0
-							courseList = ''
-							for course, credits in semester:
-								creditCount += credits
-								courseList += (course + '\n')
-
-							courseList += lineDivider + '\n\n'
-							result += 'Semester {} | Credit Total:{}\n{}\n'.format(ctr,creditCount,lineDivider)
-							result += courseList
-							ctr += 1
-						# Create the arguments dictionary and return it with the template and request in the render function
-						args = {'scheduleForm':scheduleForm, 'result':result}
-						return render(request, self.template_name, args)
+						break
+					sideCourses.remove(course)
+					coursesAvailableForSemester.remove(course)
+					del coursesAvailableForSemesterLinks[ctrRemove-1]
 					if ctr != 7:
 						creditsTaken = 0
 						for course in semester:
 							creditsTaken += course[1]
-					if len(coursesAvailableForSemester) == 0:
-						creditsTaken = creditLimit
 				ctr += 1
 
 			# Assemble the schedule into a readable output string and assign to result
@@ -158,4 +134,3 @@ class Index(TemplateView):
 			# Create the arguments dictionary and return it with the template and request in the render function
 			args = {'scheduleForm':scheduleForm, 'result':result}
 			return render(request, self.template_name, args)
-
