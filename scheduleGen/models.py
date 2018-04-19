@@ -4,6 +4,7 @@ class Courses(models.Model):
 	courseID = models.CharField(max_length=10, primary_key=True) 		#ex CSCI300
 	courseName = models.CharField(max_length=75)						#ex Introduction to Java
 	creditHours = models.IntegerField()
+	prerequisites = models.CharField(max_length=500)
 
 class CourseLinks(models.Model):
 	class Meta:
@@ -12,9 +13,9 @@ class CourseLinks(models.Model):
 	connCourseID = models.CharField(max_length=10)						#ex CSCI3350
 	overallNode = models.FloatField()										#ex 25 (numbered 0-100 where higher is better) Overall rating (combination of difficulty and cohesion scores)
 	difficultyNode = models.FloatField()										#ex 25 (numbered 0-100 where higher is better) Difficulty when these courses are paired
-	difficultyNodeWeight = models.IntegerField()								# This will be the number of entries that make the data point (So if 100 reviews created thsi value the weight will be 100)
+	#difficultyNodeWeight = models.IntegerField()								# This will be the number of entries that make the data point (So if 100 reviews created thsi value the weight will be 100)
 	cohesionNode = models.FloatField()										#ex 25 (numbered 0-100 where higher is better) Relation comparing course content
-	cohseionNodeWeight = models.IntegerField()									# This will be the number of entries that make the data point (So if 100 reviews created thsi value the weight will be 100)
+	#cohseionNodeWeight = models.IntegerField()									# This will be the number of entries that make the data point (So if 100 reviews created thsi value the weight will be 100)
 
 class Majors(models.Model):
 	majorCode = models.CharField(max_length=10, primary_key=True)		#ex CompSci
