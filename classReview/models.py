@@ -1,9 +1,12 @@
 from django.db import models
-class CourseLinks(models.Model):
-    courseID = models.CharField(max_length=10)
-    overallNode = models.FloatField()    
-    connCourseID = models.CharField(max_length=10)                                                
-    difficultyNode = models.FloatField()           
+from scheduleGen.models import CourseLinks
+#class CourseLinks(models.Model):
+#    class Meta:
+#        unique_together = (('courseID','connCourseID'),)
+#    courseID = models.CharField(max_length=10)
+#    overallNode = models.FloatField()    
+#    connCourseID = models.CharField(max_length=10)                                                
+#    difficultyNode = models.FloatField()           
     #difficultyNodeWeight = models.IntegerField()   
-    cohesionNode = models.FloatField()             
+#    cohesionNode = models.FloatField()             
     #cohseionNodeWeight = models.IntegerField()   
